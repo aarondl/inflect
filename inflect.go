@@ -24,6 +24,7 @@ type Ruleset struct {
 	singulars      []*Rule
 	humans         []*Rule
 	acronyms       []*Rule
+	defaultEnd     string
 	acronymMatcher *regexp.Regexp
 }
 
@@ -38,6 +39,7 @@ func NewRuleset() *Ruleset {
 	rs.singulars = make([]*Rule, 0)
 	rs.humans = make([]*Rule, 0)
 	rs.acronyms = make([]*Rule, 0)
+	rs.defaultEnd = ""
 	return rs
 }
 
@@ -45,6 +47,7 @@ func NewRuleset() *Ruleset {
 // set of common English pluralization rules
 func NewDefaultRuleset() *Ruleset {
 	rs := NewRuleset()
+	rs.defaultEnd = "s"
 	rs.AddPlural("s", "s")
 	rs.AddPlural("testis", "testes")
 	rs.AddPlural("axis", "axes")
@@ -352,7 +355,7 @@ func (rs *Ruleset) Pluralize(word string) string {
 			}
 		}
 	}
-	return word + "s"
+	return word + rs.defaultEnd
 }
 
 // Singularize returns the singular form of a plural word
