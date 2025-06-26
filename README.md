@@ -2,7 +2,7 @@ Fork of bitbucket.org/pkg/inflect
 
 INSTALLATION
 
-`go get -u github.com/volatiletech/inflect`
+`go get -u github.com/aarondl/inflect`
 
 PACKAGE
 
